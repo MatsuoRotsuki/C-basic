@@ -2,7 +2,7 @@
 
 enum {SUCCESS, FAIL, MAX_LEN = 80
 };
-
+//fread(char[], sizeof(char), Maxlength, *FILE);
 void BlockCat(FILE *fin)
 {
     int num ;
@@ -21,7 +21,7 @@ int main (int argc, char *argv[])
     int reval = SUCCESS;
     if(argc != 2)
     {
-        printf("Not enough argument!\n");
+        printf("Not enough arguments!\n");
         printf("Correct syntax: ./BlockCat filename\n");
         reval = FAIL;
     }

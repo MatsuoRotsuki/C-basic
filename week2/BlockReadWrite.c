@@ -2,7 +2,7 @@
 
 enum {SUCCESS, FAIL, MAX_LEN = 80
 };
-
+//fwrite(string, sizeof(char), maxlength, FILE);
 int BlockWriteRead (FILE *in, FILE *out)
 {
 	int num;
