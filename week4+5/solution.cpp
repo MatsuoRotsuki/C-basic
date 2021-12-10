@@ -2,6 +2,8 @@
 #include <string.h>
 #include <item.h>
 #include "STACK.h"
+
+//NOT WORKING
 int main (int argc, char *argv[])
 {
 	char *a = argv[1]; int i, N = strlen(a);
