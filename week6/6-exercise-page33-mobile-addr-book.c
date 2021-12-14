@@ -5,7 +5,22 @@
 #define NAMELENGTH 50
 #define EMAILLENGTH 50
 #define TELLENGTH 50
+/*
 
+• We assume that you make a mobile
+phone’s address book.
+• Declare the structure which can store at
+least "name", "telephone number", "e-mail
+address.". And declare an array of the
+structure that can handle about 100
+address data.
+• Read this array data of about 10 from an
+input file, and write a name which is equal
+to a specified name and whose array index
+is the smallest to an output file. Use the
+binary search for this exercise
+
+*/
 typedef struct {
 	char name[NAMELENGTH];
 	char tel[EMAILLENGTH];
@@ -79,4 +94,8 @@ int main (){
     }
     return 0;
 }
+/*
 
+DONE
+
+*/
