@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
- 
+#include <ctype.h>
 // Stack type
 struct Stack
 {
@@ -14,8 +14,7 @@ struct Stack
 // Stack Operations
 struct Stack* createStack( unsigned capacity )
 {
-    struct Stack* stack = (struct Stack*)
-           malloc(sizeof(struct Stack));
+    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
  
     if (!stack)
         return NULL;
@@ -23,8 +22,7 @@ struct Stack* createStack( unsigned capacity )
     stack->top = -1;
     stack->capacity = capacity;
  
-    stack->array = (int*) malloc(stack->capacity *
-                                   sizeof(int));
+    stack->array = (int*) malloc(stack->capacity *sizeof(int));
  
     return stack;
 }
@@ -46,7 +44,6 @@ void push(struct Stack* stack, char op)
 {
     stack->array[++stack->top] = op;
 }
- 
  
 // A utility function to check if
 // the given character is operand
@@ -111,50 +108,49 @@ int infixToPostfix(char* exp)
     printf( "%s", exp);
 }
 
-int value(char c) {  return (c - '0'); }
- 
-// This function evaluates simple expressions. It returns -1 if the
-// given expression is invalid.
-int evaluate(char *exp)
+int evaluatePostfix(char* exp)
 {
-    // Base Case: Given expression is empty
-    if (exp == '\0')  return -1;
+    // Create a stack of capacity equal to expression size
+    struct Stack* stack = createStack(strlen(exp));
+    int i;
  
-    // The first character must be an operand, find its value
-    int res = value(exp[0]);
+    // See if stack was created successfully
+    if (!stack) return -1;
  
-    // Traverse the remaining characters in pairs
-    for (int i = 1; exp[i]; i += 2)
+    // Scan all characters one by one
+    for (i = 0; exp[i]; ++i)
     {
-        // The next character must be an operator, and
-        // next to next an operand
-        char opr = exp[i], opd = exp[i+1];
+        // If the scanned character is an operand (number here),
+        // push it to the stack.
+        if (isdigit(exp[i]))
+            push(stack, exp[i] - '0');
  
-        // If next to next character is not an operand
-        if (!isOperand(opd))  return -1;
- 
-        // Update result according to the operator
-        if (opr == '+')       res += value(opd);
-        else if (opr == '-')  res -= value(opd);
-        else if (opr == '*')  res *= value(opd);
-        else if (opr == '/')  res /= value(opd);
- 
-        // If not a valid operator
-        else return -1;
+        // If the scanned character is an operator, pop two
+        // elements from stack apply the operator
+        else
+        {
+            int val1 = pop(stack);
+            int val2 = pop(stack);
+            switch (exp[i])
+            {
+            case '+': push(stack, val2 + val1); break;
+            case '-': push(stack, val2 - val1); break;
+            case '*': push(stack, val2 * val1); break;
+            case '/': push(stack, val2/val1); break;
+            }
+        }
     }
-    return res;
+    return pop(stack);
 }
 
 int main()
 {
     char exp[50]; //"a+b*(c^d-e)^(f+g*h)-i";->abcd^e-fgh*+^*+i-
-    printf("Enter infix expression: ");
+    printf("Enter infix expression(e.g 3+5*4): ");
     scanf("%s",&exp);
     printf("Postfix notation: ");
     infixToPostfix(exp);
-    
     printf("\nEvaluation the expression: ");
-    int res = evaluate(exp);
-    printf("%d",res);
+    printf("%d",evaluatePostfix(exp));
     return 0;
 }
