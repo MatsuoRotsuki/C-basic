@@ -98,15 +98,15 @@ Tree *treeinsert2(Tree *root, int key) { //Recursive Algorithm
     return root;
 }
 
-ElementType DeleteMin(Tree *root){
-    ElementType k;
-    if (root->left == NULL){
-        k = root->data;
-        root=root->right;
-        return k;
-    }
-    else return DeleteMin(root->left);
-}
+// ElementType DeleteMin(Tree *root){
+//     ElementType k;
+//     if (root->left == NULL){
+//         k = root->data;
+//         root=root->right;
+//         return k;
+//     }
+//     else return DeleteMin(root->left);
+// }
 
 void prettyprint(Tree *root){
     if (root == NULL) return;
