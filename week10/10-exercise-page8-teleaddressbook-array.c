@@ -18,6 +18,8 @@ made during the sorting process of each algorithm.
 #include <stdlib.h>
 #include "sort-algorithm-address.h"
 
+int countcomparison = 0;
+
 Address data[100];
 int count = 0;
 
@@ -41,3 +43,4 @@ int main (){
     for (i = 0; i < count; i++) inthongtin(i);
     return 0;
 }
+//DONE

@@ -14,4 +14,8 @@
 // “data”. 
 // – 3. Do the insertion sort to the array “data”
 // – 4. Output every 1 word of the value of the 
-// sorted array ”sort” by fputc( ) function.
+// sorted array ”sort” by fputc( ) function
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>

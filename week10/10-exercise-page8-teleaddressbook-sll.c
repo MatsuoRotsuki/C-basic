@@ -17,4 +17,4 @@ made during the sorting process of each algorithm.
 #include <string.h>
 #include <stdlib.h>
 
-
+//Dkm cái đề ngu lồn j z

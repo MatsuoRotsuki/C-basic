@@ -64,3 +64,36 @@ void selectionSort(Address List[], int size){
     }
 }
 
+void heapify(Address List[], int size, int i){
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if (l < size && strcmp(List[l].name, List[largest].name) > 0)
+        largest = l;
+
+    if (r < size && strcmp(List[r].name, List[largest].name) > 0)
+        largest = r;
+    
+    if (largest != i) {
+        swap (&List[i], &List[largest]);
+        heapify(List, size, largest);
+    }
+}
+
+void heapSort(Address List[], int size){
+    for (int i = size / 2 - 1; i >= 0; i--)
+        heapify(List, size, i);
+    
+    for (int i = size - 1; i > 0; i --){
+        swap(&List[0], &List[i]);
+
+        heapify(List, i, 0);
+    }
+}
+
+void inthongtin(Address temp){
+    printf("Name: %s\n",temp.name);
+    printf("Telephone number: %s\n",temp.name);
+    printf("Email: %s\n",temp.email);
+}

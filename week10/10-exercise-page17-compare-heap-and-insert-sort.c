@@ -15,8 +15,10 @@
 int main (){
     srand((int)time(0));
     int List[500];
-    int i;
-    for (i = 0; i < 500; i++) List[i] = rand() % 1000;
-    heapSort(List, 500);
-    for (i = 0; i < 500; i++) printf("%d ",List[i]);
+    for (int i = 0; i < 500; i++) List[i] = rand() % 1000;
+    insertionSort(List, 500);
+    for (int i = 0; i < 500; i++) printf("%d ",List[i]);
 }
+
+//INSERTION SORT spends 0.0888s
+//HEAP SORT spends 0.08494s
